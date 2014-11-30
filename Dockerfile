@@ -1,4 +1,4 @@
-FROM kriation/docker-centos7
+FROM kriation/centos7
 
 MAINTAINER Armen Kaleshian <armen@kriation.com>
 
