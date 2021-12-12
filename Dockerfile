@@ -1,11 +1,14 @@
-FROM kriation/centos7 as build
+ARG JAVA_VERSION
 
-# Download, install Oracle JDK 17 via RPM
+FROM kriation/centos7 as build-8
+RUN rpm -i https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245468_4d5417147a92418ea8b615e228bb6935
+
+FROM kriation/centos7 as build-17
 RUN rpm -i https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
 
-FROM build as publish
-
+FROM build-${JAVA_VERSION} as publish
 ARG BUILD_DATE
+ARG JAVA_VERSION
 
 LABEL maintainer="armen@kriation.com"
 LABEL org.label-schema.build-date="$BUILD_DATE"
